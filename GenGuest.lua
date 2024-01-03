@@ -21,7 +21,7 @@ end
 
 local function reconBots()
     while getBot().status ~= "Online" do
-        getBot().connect(true)
+        getBot():connect(true)
         sleep(10000)
     end
 end
@@ -52,7 +52,9 @@ local function createId()
     getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..RandomGen(10).."\npassword|"..pass[a].."\npassword_verify|"..pass[a].."\nemail|"..email[a])
     end
     if RandomName and RandomPW then
-    getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..RandomGen(10).."\npassword|1!"..randomPass.."\npassword_verify|1!"..randomPass.."\nemail|"..email[a])
+        print(getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..RandomGen(10).."\npassword|1!"..randomPass.."\npassword_verify|1!"..randomPass.."\nemail|"..email[a]))
+        getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..RandomGen(10).."\npassword|1!"..randomPass.."\npassword_verify|1!"..randomPass.."\nemail|"..email[a])
+        print(getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..RandomGen(10).."\npassword|1!"..randomPass.."\npassword_verify|1!"..randomPass.."\nemail|"..email[a]))
     end
     if RandomPW == false and RandomName == false then 
 
@@ -71,5 +73,8 @@ if getBot().status == "AAP" then
     file:write("==== Create By Barcodew ====\n")
     file:write("----------------------------\n")
     file:write(RandomName..":"..randomPass..":"..email[a])
-    file:close()
+    
 end
+
+
+file:close()
