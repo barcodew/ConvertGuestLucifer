@@ -9,6 +9,8 @@ RandomPW = true
 RandomName = true 
 
 
+
+
 local function RandomGen(LetterWorld)
         local word = ""
     local alphabet = "abcdefghijklmnopqrstuvwxyz"
@@ -46,19 +48,6 @@ local function createId()
     end
 end
 
-local function result()
-    if getBot().status == "AAP" then
-        file:write("----------------------------\n")
-        file:write("==== Create By Barcodew ====\n")
-        file:write("----------------------------\n")
-        file:write(RandomName..":"..randomPass..":"..email[a])
-        
-    end
-end
-
-local function joinWorld()
-        getBot():sendPacket(2,"action|join_request\nname|" .."FAKELUMINOUS".."\ninvitedWorld|0")
-end
 
 local bot = getBot() 
 bot.auto_tutorial = true 
@@ -69,8 +58,18 @@ for i,bots in ipairs(getBots()) do
         reconBots()
         createId()
         reconBots()
-        result()
+        break
     end
 end
+
+
+if getBot().status == "AAP" then
+    file:write("----------------------------\n")
+    file:write("==== Create By Barcodew ====\n")
+    file:write("----------------------------\n")
+    file:write(RandomName..":"..randomPass..":"..email[a])
+    
+end
+
 
 file:close()
