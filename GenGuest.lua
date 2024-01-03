@@ -30,11 +30,9 @@ local function reconBots()
 end
 
 local file = io.open("resultCIDByXcoBar.txt", "w")
-local randomPass = RandomGen(7).."@"
-local randomGrowid = RandomGen(10)
+
 local function createId()
     sleep(1000)
-    bot.auto_tutorial = false
     getBot():sendPacket(2, "action|growid")
     sleep(5000)
     if RandomPW and RandomName == false then 
@@ -43,9 +41,7 @@ local function createId()
     getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..randomGrowid.."\npassword|"..pass[a].."\npassword_verify|"..pass[a].."\nemail|"..email[a])
     end
     if RandomName and RandomPW then
-        print(getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..randomGrowid.."\npassword|1!"..randomPass.."\npassword_verify|1!"..randomPass.."\nemail|"..email[a]))
         getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..randomGrowid.."\npassword|1!"..randomPass.."\npassword_verify|1!"..randomPass.."\nemail|"..email[a])
-        print(getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..randomGrowid.."\npassword|1!"..randomPass.."\npassword_verify|1!"..randomPass.."\nemail|"..email[a]))
     end
     if RandomPW == false and RandomName == false then 
 
@@ -70,11 +66,13 @@ end
 
 local bot = getBot() 
 bot.auto_tutorial = true 
+bot.auto_tutorial = false
 local a = 0
 for i,bots in ipairs(getBots()) do
     a = a+1
+    global randomPass = RandomGen(7).."@"
+    global randomGrowid = RandomGen(10)
     if bots.name == bot.name then
-        print()
         reconBots()
         joinWorld()
         createId()
