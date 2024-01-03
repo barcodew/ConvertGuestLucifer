@@ -7,7 +7,7 @@ local email = {
 }
 RandomPW = true 
 RandomName = true 
-
+totalBot = 3
 
 local function RandomGen(LetterWorld)
         local word = ""
@@ -29,7 +29,8 @@ local function reconBots()
     end
 end
 
-
+local randomPass = RandomGen(7).."@"
+local randomGrowid = RandomGen(10)
 local function createId()
     sleep(1000)
     getBot():sendPacket(2, "action|growid")
@@ -69,24 +70,22 @@ bot.auto_tutorial = false
 local file = io.open("resultCIDByXcoBar.txt", "w")
 
 
-randomPass = ""
-randomGrowid = ""
 
 
 local a = 0
 for i,bots in ipairs(getBots()) do
     a = a+1
-    randomPass = RandomGen(7).."@"
-    randomGrowid = RandomGen(10)
     if bots.name == bot.name then
-        reconBots()
-        joinWorld()
-        createId()
-        result()
+        break
     end
 end
-
-file:close()
+reconBots()
+joinWorld()
+createId()
+result()
+if a == totalBot then
+    file:close()
+end
 
 
 
