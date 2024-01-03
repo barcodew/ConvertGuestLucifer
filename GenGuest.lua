@@ -29,7 +29,6 @@ local function reconBots()
     end
 end
 
-local file = io.open("resultCIDByXcoBar.txt", "w")
 
 local function createId()
     sleep(1000)
@@ -67,11 +66,18 @@ end
 local bot = getBot() 
 bot.auto_tutorial = true 
 bot.auto_tutorial = false
+local file = io.open("resultCIDByXcoBar.txt", "w")
+
+
+local randomPass = ""
+local randomGrowid = ""
+
+
 local a = 0
 for i,bots in ipairs(getBots()) do
     a = a+1
-    global randomPass = RandomGen(7).."@"
-    global randomGrowid = RandomGen(10)
+    randomPass = RandomGen(7).."@"
+    randomGrowid = RandomGen(10)
     if bots.name == bot.name then
         reconBots()
         joinWorld()
