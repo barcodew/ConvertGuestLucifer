@@ -3,7 +3,7 @@ local pass = {"!passwordbuluk2kali"}
 local email = {
     "hthuoungiep@gmail.com",
 "chohuthuoc@gmail.com",
-"khailuudang@gmail.com"
+"khailuudang@gmail.com" 
 }
 
 totalBot = 3
