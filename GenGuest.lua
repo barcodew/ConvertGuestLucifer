@@ -1,9 +1,9 @@
 local growid = {"growid"}
 local pass = {"!passwordbuluk2kali"}
 local email = {
-    "hauwauyunusa0000@gmail.com",
-"corurua838@gmail.com",
-"ouafinabila1@gmail.com"
+    "hthuoungiep@gmail.com",
+"chohuthuoc@gmail.com",
+"khailuudang@gmail.com"
 }
 
 totalBot = 3
@@ -43,13 +43,13 @@ local function reconAAP(checkAAP)
     end
 end
 
-function webhookSend(growid,pass)
+function webhookSend(growid,pass,mail)
     local script = [[
             $webHookUrl = "]]..webhookUrl..[["
             $fieldArray = @(
                 @{
                     name = "]]..getBot().name:upper()..[["
-                    value = ":computer: Information Bot : ]]..log..[[`r<a:arrowz:1038444769141063850> Username Bot : ]]..growid..[[`r:lock: Password Bot : ]]..pass..[[`r:green_circle: Status Bot : ]]..getBot().status..[["
+                    value = ":computer: Information Bot : ]]..log..[[`r<a:arrowz:1038444769141063850> Username Bot : ]]..growid..[[`r:lock: Password Bot : ]]..pass..[[`r:green_circle: Status Bot : ]]..getBot().status..[[`r:envelope: Email Bot : ]]..mail..[["
                     inline = "true"
                 }
             )
@@ -108,10 +108,6 @@ end
 reconBots()
 reconAAP()
 if getBot().status == "AAP" then
-    webhookSend(randomGrowid,randomPass)
+    webhookSend(randomGrowid,randomPass,email[a])
 end
 
-
-addBot("megatzyh4","02:EE:E7:2E:94:80","354CC9D99BE53454B5E6C742D9BE0D0A");
-addBot("megatzyh5","02:F0:EF:5D:48:D3","F4A3F4E8E8A790DB3CA4F83EDC2BB341");
-addBot("megatzyh6","02:63:B8:C5:77:EF","ABCE7575A32559B9DC0DB7C58D44D22C");
