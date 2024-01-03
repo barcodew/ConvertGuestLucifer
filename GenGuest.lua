@@ -55,9 +55,8 @@ local a = 0
 for i,bots in ipairs(getBots()) do
     a = a+1
     if bots.name == bot.name then
-        reconBots()
         createId()
-        reconBots()
+        getBots():connect(true)
         break
     end
 end
