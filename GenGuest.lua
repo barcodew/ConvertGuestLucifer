@@ -8,18 +8,6 @@ local email = {
 RandomPW = true 
 RandomName = true 
 
-local randomPass = {}
-local randomGrowid = {}
-for i, gen in iparis(10) do
-    table.insert(randomGrowid,RandomGen(10))
-    table.insert(randomPass,RandomGen(7).."@")
-end
-for i, value in ipairs(randomGrowid) do
-    print(i, value)
-end
-for i, value in ipairs(randomPass) do
-    print(i, value)
-end
 
 local function RandomGen(LetterWorld)
         local word = ""
@@ -49,10 +37,10 @@ local function createId()
     if RandomPW and RandomName == false then 
     getBot():sendPacket(2,"action|dialog_return\ndialog_name|growid_apply\nlogon|"..growid[a].."\npassword|"..pass[a].."\npassword_verify|"..pass[a].."\nemail|"..email[a])
     elseif RandomPW == false and RandomName then 
-    getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..randomGrowid[a].."\npassword|"..pass[a].."\npassword_verify|"..pass[a].."\nemail|"..email[a])
+    getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..randomGrowid.."\npassword|"..pass[a].."\npassword_verify|"..pass[a].."\nemail|"..email[a])
     end
     if RandomName and RandomPW then
-        getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..randomGrowid[a].."\npassword|1!"..randomPass[a].."\npassword_verify|1!"..randomPass[a].."\nemail|"..email[a])
+        getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..randomGrowid.."\npassword|1!"..randomPass.."\npassword_verify|1!"..randomPass.."\nemail|"..email[a])
     end
     if RandomPW == false and RandomName == false then 
 
@@ -66,7 +54,7 @@ local function result()
         file:write("----------------------------\n")
         file:write("==== Create By Barcodew ====\n")
         file:write("----------------------------\n")
-        file:write(RandomName[a]..":"..randomPass[a]..":"..email[a])
+        file:write(RandomName..":"..randomPass..":"..email[a])
         
     end
 end
@@ -81,14 +69,15 @@ bot.auto_tutorial = false
 local file = io.open("resultCIDByXcoBar.txt", "w")
 
 
-
+randomPass = ""
+randomGrowid = ""
 
 
 local a = 0
-
-
 for i,bots in ipairs(getBots()) do
     a = a+1
+    randomPass = RandomGen(7).."@"
+    randomGrowid = RandomGen(10)
     if bots.name == bot.name then
         reconBots()
         joinWorld()
