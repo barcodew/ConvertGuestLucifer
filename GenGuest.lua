@@ -19,12 +19,12 @@ for i,bots in ipairs(getBots()) do
     end
 end
 
-local function reconBots(){
-    if getBot().status ~= "online" then
+local function reconBots()
+    while getBot().status ~= "Online" do
+        getBot().connect(true)
         sleep(10000)
-        getBot().connext(true)
     end
-}
+end
 
 
 local function RandomGen(LetterWorld)
@@ -40,7 +40,7 @@ local function RandomGen(LetterWorld)
     return word    
 end
 
-local function createId(){
+local function createId()
     sleep(1000)
     bot.auto_tutorial = false
     local randomPass = RandomGen(7).."@";
@@ -58,9 +58,11 @@ local function createId(){
 
         getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..growid[a].."\npassword|"..pass[a].."\npassword_verify|"..pass[a].."\nemail|"..email[a])
     end
-}
+end
 
 
+
+reconBots()
 createId()
 reconBots()
 
@@ -68,6 +70,6 @@ if getBot().status == "AAP" then
     file:write("----------------------------\n")
     file:write("==== Create By Barcodew ====\n")
     file:write("----------------------------\n")
-    file:write(RandomName..":"..randomPass)
+    file:write(RandomName..":"..randomPass..":"..email[a])
     file:close()
 end
