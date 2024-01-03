@@ -7,7 +7,7 @@ local email = {
 }
 
 totalBot = 3
-
+webhookUrl = "https://discord.com/api/webhooks/1192237650254508112/BTSgzX-8ebX4oOCU3SDGBpWSBV8JugQMLnboGy0U7mXk4hF5UPNGaokWdFegeEEGrIdZ"
 RandomPW = true 
 RandomName = true 
 
@@ -43,6 +43,33 @@ local function reconAAP(checkAAP)
     end
 end
 
+function webhookSend(growid,pass)
+    local script = [[
+            $webHookUrl = "]]..webhookUrl..[["
+            $fieldArray = @(
+                @{
+                    name = "]]..getBot().name:upper()..[["
+                    value = ":computer: Information Bot : ]]..log..[[`r<a:arrowz:1038444769141063850> Username Bot : ]]..growid..[[`r:lock: Password Bot : ]]..pass..[[`r:green_circle: Status Bot : ]]..getBot().status..[["
+                    inline = "true"
+                }
+            )
+            $embedObject = @{
+                title = "<a:bot:1038446548821999616>Cid Gen By Barcodew<a:bot:1038446548821999616>"
+                description = "**<a:warn:1083966616523509893>INFORMATION BOT ]]..getBot().name..[[<a:warn:1083966616523509893>**"
+                color = "15413489"
+                fields = $fieldArray
+            }
+            $embedArray = @($embedObject)
+            $payload = @{
+                embeds = $embedArray
+            }
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+            Invoke-RestMethod -Uri $webHookUrl -Body ($payload | ConvertTo-Json -Depth 4) -Method Patch -ContentType 'application/json'
+        ]]
+    local pipe = io.popen("powershell -command -", "w")
+    pipe:write(script)
+    pipe:close()
+end
 
 local function RandomGen(LetterWorld)
         local word = ""
@@ -81,18 +108,10 @@ end
 reconBots()
 reconAAP()
 if getBot().status == "AAP" then
-    file:write(randomGrowid.."|"..randomPass.."|"..email[a])
-end
-
-if a == totalBot then
-    file:close()
-    print("Succesfully Create")
+    webhookSend(randomGrowid,randomPass)
 end
 
 
-
-
-
--- addBot("megatzyhh1","02:5F:E2:DB:4C:7C","490B702317630FCD2A7939834C096B0E");
--- addBot("megatzyh2","02:6E:B9:52:05:A4","250E8485241BC19FFC75908AF1E10FAC");
--- addBot("megatzyh3","02:2D:66:D5:84:EF","1BC41385549FB81EA225E11D26BC0E51");
+addBot("megatzyh4","02:EE:E7:2E:94:80","354CC9D99BE53454B5E6C742D9BE0D0A");
+addBot("megatzyh5","02:F0:EF:5D:48:D3","F4A3F4E8E8A790DB3CA4F83EDC2BB341");
+addBot("megatzyh6","02:63:B8:C5:77:EF","ABCE7575A32559B9DC0DB7C58D44D22C");
