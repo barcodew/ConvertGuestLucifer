@@ -7,6 +7,7 @@ local email = {
 }
 RandomPW = true 
 RandomName = true 
+
 local bot = getBot() 
 bot.auto_tutorial = true 
 local a = 0
@@ -30,6 +31,7 @@ local function RandomGen(LetterWorld)
 end
   sleep(1000)
   bot.auto_tutorial = false
+  local randomPass = RandomGen(7);
 getBot():sendPacket(2, "action|growid")
 sleep(5000)
 if RandomPW and RandomName == false then 
@@ -38,7 +40,7 @@ elseif RandomPW == false and RandomName then
 getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..RandomGen(10).."\npassword|"..pass[a].."\npassword_verify|"..pass[a].."\nemail|"..email[a])
 end
 if RandomName and RandomPW then
-getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..RandomGen(10).."\npassword|1!"..RandomGen(7).."\npassword_verify|1!"..RandomGen(7).."\nemail|"..email[a])
+getBot():sendPacket(2, "action|dialog_return\ndialog_name|growid_apply\nlogon|"..RandomGen(10).."\npassword|1!"..randomPass.."\npassword_verify|1!"..randomPass.."\nemail|"..email[a])
 end
 if RandomPW == false and RandomName == false then 
 
