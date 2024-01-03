@@ -54,7 +54,8 @@ local function createId()
 end
 
 local function result()
-    if getBot().status == "AAP" then
+    getBot():connect(true)
+    if getBot().status == 6 then
         file:write("----------------------------\n")
         file:write("==== Create By Barcodew ====\n")
         file:write("----------------------------\n")
@@ -77,7 +78,6 @@ for i,bots in ipairs(getBots()) do
         reconBots()
         joinWorld()
         createId()
-        reconBots()
         result()
     end
 end
