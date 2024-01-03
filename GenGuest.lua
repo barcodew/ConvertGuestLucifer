@@ -76,10 +76,13 @@ local file = io.open("resultCIDByXcoBar.txt", "w")
 
 
 local a = 0
-for i,bots in ipairs(getBots()) do
-    a = a+1
+
+for i, gen in iparis(10) do
     table.insert(randomGrowid,RandomGen(10))
     table.insert(randomPass,RandomGen(7).."@")
+end
+for i,bots in ipairs(getBots()) do
+    a = a+1
     if bots.name == bot.name then
         reconBots()
         joinWorld()
